@@ -33,7 +33,6 @@ def train_model(X: pd.DataFrame, y: pd.Series, max_iter: int) -> Pipeline:
                 "model",
                 LogisticRegression(
                     max_iter=max_iter,
-                    multi_class="auto",
                     solver="lbfgs",
                 ),
             ),
