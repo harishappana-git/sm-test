@@ -1,5 +1,6 @@
 import argparse
 import os
+from pathlib import Path
 
 import joblib
 import pandas as pd
@@ -21,8 +22,39 @@ def parse_args():
     return parser.parse_args()
 
 
+def _is_csv_file(path: Path) -> bool:
+    if path.suffix == ".csv":
+        return True
+    return path.suffixes[-2:] == [".csv", ".gz"]
+
+
+def resolve_training_files(train_path: str) -> list[Path]:
+    path = Path(train_path)
+    if path.is_dir():
+        files = sorted(p for p in path.iterdir() if p.is_file() and _is_csv_file(p))
+        if not files:
+            raise ValueError(
+                f"No CSV training files found in directory: {train_path}. "
+                "Ensure the train channel contains at least one .csv or .csv.gz file."
+            )
+        return files
+    if not path.exists():
+        raise ValueError(
+            f"Training data path does not exist: {train_path}. "
+            "Provide --train-data or verify the S3 input path."
+        )
+    return [path]
+
+
 def load_training_data(train_path: str) -> tuple[pd.DataFrame, pd.Series]:
-    df = pd.read_csv(train_path)
+    files = resolve_training_files(train_path)
+    frames = [pd.read_csv(file) for file in files]
+    df = pd.concat(frames, ignore_index=True) if len(frames) > 1 else frames[0]
+    if "target" not in df.columns:
+        raise ValueError(
+            "Training data must include a 'target' column. "
+            f"Columns found: {', '.join(df.columns)}"
+        )
     features = df.drop(columns=["target"])
     labels = df["target"].astype(int)
     return features, labels
