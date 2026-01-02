@@ -1,6 +1,6 @@
 # Project Guide: Training, Deployment, and Batch Inference on SageMaker
 
-This guide shows how to run the included sample project end-to-end using AWS SageMaker. It covers local validation, SageMaker training jobs, real-time endpoints, and batch transform for offline inference.
+This guide shows how to run the included sample project end-to-end using AWS SageMaker. It covers local validation, SageMaker training jobs, real-time endpoints, and batch transform for offline inference. For focused walkthroughs, see `docs/training-job.md` (training) and `docs/endpoint-deployment.md` (real-time deployment).
 
 ## 1) Prerequisites
 - Complete the AWS setup in `docs/aws-setup.md` (roles, bucket, profile).
@@ -33,7 +33,7 @@ This guide shows how to run the included sample project end-to-end using AWS Sag
   ```
 
 ## 4) Launch a SageMaker training job
-Use the SageMaker Python SDK to submit a managed training job with the provided entry point (`src/train.py`).
+Use the SageMaker Python SDK to submit a managed training job with the provided entry point (`src/train.py`). You can also run the CLI helper `python src/sagemaker_jobs.py train ...` as described in `docs/training-job.md`.
 
 ```python
 import boto3

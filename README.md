@@ -24,7 +24,9 @@ This repository provides a minimal end-to-end template for training and deployin
    ```
 2. Explore the guides:
    - AWS setup prerequisites: `docs/aws-setup.md`
-   - Training and deployment flow: `docs/project-guide.md`
+   - Training job walkthrough: `docs/training-job.md`
+   - Endpoint deployment walkthrough: `docs/endpoint-deployment.md`
+   - End-to-end flow (including batch transform): `docs/project-guide.md`
 3. Run a local training dry-run:
    ```bash
    python src/train.py \
@@ -41,4 +43,4 @@ This repository provides a minimal end-to-end template for training and deployin
 
 ## Next steps
 
-Follow `docs/project-guide.md` to launch SageMaker training, deploy an endpoint, and run batch transform jobs using the provided scripts.
+Follow `docs/project-guide.md` to launch SageMaker training, deploy an endpoint, and run batch transform jobs using the provided scripts. Use `src/sagemaker_jobs.py` if you prefer ready-made CLI commands for training and deployment.
