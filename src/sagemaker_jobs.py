@@ -3,8 +3,7 @@ import time
 
 import boto3
 import sagemaker
-from sagemaker.sklearn.estimator import SKLearn
-from sagemaker.sklearn.model import SKLearnModel
+from sagemaker.sklearn import SKLearn, SKLearnModel
 
 
 def get_session(region: str | None) -> sagemaker.Session:

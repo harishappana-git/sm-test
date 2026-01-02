@@ -4,7 +4,7 @@ Use this guide to launch a managed SageMaker training job for the Iris sample pr
 
 ## Prerequisites
 - Complete AWS setup in `docs/aws-setup.md` (role, bucket, credentials).
-- Install project dependencies locally:
+- Install project dependencies locally (the `sagemaker` package includes the `sagemaker.sklearn` module used below):
   ```bash
   pip install -r requirements.txt
   ```
@@ -36,7 +36,7 @@ If you prefer to work directly in a notebook or Python REPL, use the snippet bel
 
 ```python
 import sagemaker
-from sagemaker.sklearn.estimator import SKLearn
+from sagemaker.sklearn import SKLearn
 
 role = "arn:aws:iam::<ACCOUNT_ID>:role/SageMakerExecutionRole"
 bucket = "<bucket>"

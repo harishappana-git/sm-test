@@ -4,7 +4,8 @@ This guide shows how to run the included sample project end-to-end using AWS Sag
 
 ## 1) Prerequisites
 - Complete the AWS setup in `docs/aws-setup.md` (roles, bucket, profile).
-- Python 3.10+, AWS CLI, and the SageMaker Python SDK installed locally:
+- Python 3.10+, AWS CLI, and the SageMaker Python SDK installed locally (provided by `pip install -r requirements.txt`; no
+  separate `sagemaker.sklearn` package is needed):
   ```bash
   pip install -r requirements.txt
   ```
@@ -38,7 +39,7 @@ Use the SageMaker Python SDK to submit a managed training job with the provided 
 ```python
 import boto3
 import sagemaker
-from sagemaker.sklearn.estimator import SKLearn
+from sagemaker.sklearn import SKLearn
 
 region = "us-east-1"
 session = sagemaker.Session()
@@ -70,7 +71,7 @@ Notes:
 After training finishes, deploy the model as a real-time HTTPS endpoint.
 
 ```python
-from sagemaker.sklearn.model import SKLearnModel
+from sagemaker.sklearn import SKLearnModel
 
 model = SKLearnModel(
     model_data=estimator.model_data,

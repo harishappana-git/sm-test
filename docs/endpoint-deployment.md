@@ -5,7 +5,7 @@ This document walks through deploying a trained Iris model to a real-time SageMa
 ## Prerequisites
 - A completed SageMaker training job for this project (see `docs/training-job.md`).
 - IAM role ARN, S3 model artifact URI, and region details.
-- Dependencies installed locally:
+- Dependencies installed locally (from `requirements.txt`, which installs the `sagemaker` SDK and its `sagemaker.sklearn` module):
   ```bash
   pip install -r requirements.txt
   ```
@@ -28,7 +28,7 @@ Notes:
 
 ## Deploy from the SageMaker SDK directly
 ```python
-from sagemaker.sklearn.model import SKLearnModel
+from sagemaker.sklearn import SKLearnModel
 
 role = "arn:aws:iam::<ACCOUNT_ID>:role/SageMakerExecutionRole"
 model_artifact = "s3://<bucket>/models/iris/<job>/output/model.tar.gz"
