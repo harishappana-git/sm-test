@@ -27,6 +27,7 @@ This repository provides a minimal end-to-end template for training and deployin
    - Training job walkthrough: `docs/training-job.md`
    - Endpoint deployment walkthrough: `docs/endpoint-deployment.md`
    - End-to-end flow (including batch transform): `docs/project-guide.md`
+   - GitHub Actions CI/CD (continuous training + deployment): `docs/github-actions-cicd.md`
 3. Run a local training dry-run:
    ```bash
    python src/train.py \
