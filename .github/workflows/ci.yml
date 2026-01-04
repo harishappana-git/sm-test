@@ -2,12 +2,14 @@ name: CI
 
 on:
   push:
+    branches: ["main"]
     paths:
       - "src/**"
       - "data/**"
       - "requirements.txt"
       - ".github/workflows/ci.yml"
   pull_request:
+    branches: ["main"]
     paths:
       - "src/**"
       - "data/**"
@@ -41,4 +43,3 @@ jobs:
 
       - name: Validate output
         run: python -c "import pandas as pd; df = pd.read_csv('predictions.csv'); assert 'predicted_class' in df.columns; print(df.head().to_string(index=False))"
-
